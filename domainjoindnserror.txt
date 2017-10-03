@@ -1,0 +1,19 @@
+[ec2-user@RHEL7ADJN1 ~]$ sudo realm join effctech.org -v -U 'DomainJoin'
+ * Resolving: _ldap._tcp.effctech.org
+ * Performing LDAP DSE lookup on: 172.31.31.37
+ * Successfully discovered: effctech.org
+Password for DomainJoin:
+ * Required files: /usr/sbin/oddjobd, /usr/libexec/oddjob/mkhomedir, /usr/sbin/sssd, /usr/bin/net
+ * LANG=C LOGNAME=root /usr/bin/net -s /var/cache/realmd/realmd-smb-conf.O0EC7Y -U DomainJoin ads join effctech.org
+Enter DomainJoin's password:DNS update failed: NT_STATUS_INVALID_PARAMETER
+
+Using short domain name -- EFFCTECH
+Joined 'RHEL7ADJN1' to dns domain 'effctech.org'
+No DNS domain configured for rhel7adjn1. Unable to perform DNS Update.
+ * LANG=C LOGNAME=root /usr/bin/net -s /var/cache/realmd/realmd-smb-conf.O0EC7Y -U DomainJoin ads keytab create
+Enter DomainJoin's password:
+ * /usr/bin/systemctl enable sssd.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/sssd.service to /usr/lib/systemd/system/sssd.service.
+ * /usr/bin/systemctl restart sssd.service
+ * /usr/bin/sh -c /usr/sbin/authconfig --update --enablesssd --enablesssdauth --enablemkhomedir --nostart && /usr/bin/systemctl enable oddjobd.service && /usr/bin/systemctl start oddjobd.service
+ * Successfully enrolled machine in realm
